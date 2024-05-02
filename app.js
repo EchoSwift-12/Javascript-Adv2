@@ -149,9 +149,66 @@ b[0] = 10
 console.log(a)// [10, 4, 6, 8]
 // -------
 
-const addFive=(num)=>{
-    let five  =5//new box created
-    console.log(num+five)
+const addFive = (num) => {
+    let five = 5//new box created
+    console.log(num + five)
 }//box is cleaned=>garbage collection
 
 addFive(4)//9
+
+// ---------Types of Operators-----------
+
+console.log(typeof (2))//number
+console.log(typeof (true))//boolean
+console.log(typeof ('s'))//string
+console.log(typeof ([1, 2, 3]))//object
+console.log(typeof ({ k: 1 }))//object
+
+//--------Call Stack for console log------------
+
+// it should have 1. Base conditon - Avoids stackoverflow error
+//    2. Recursive function call
+
+
+const printNumbers = (num) => {
+    if (num < 1) {  //Base condition
+        return
+    }
+    else {
+        printNumbers(num - 1)//Recursion
+        console.log(num)
+    }
+}
+printNumbers(3)//1
+//2
+//3
+
+//  steps
+
+// 1. num = 3, Calling printNumbers(2) - pause -> print 3-> Done   
+//2. num = 2, Calling printNumbers(1) - pause -> print 2-> Done     
+//3. num = 1, Calling printNumbers(0) - pause -> print 1-> Done
+//4. num = 0, return empty value -> Done
+
+//  Factorial
+const factorial = (n) => {
+    let fact = 1
+    for (let i = 1; i <= n; i++) {
+        fact = fact * i
+    }
+    return fact
+}
+console.log(factorial(5))//120
+
+//Using Recursion
+//Base condition =num<2
+
+const factorialRecursion = (num) => {
+    if (num<2) {
+        return 1
+    }
+    else {
+        return num*factorialRecursion(num - 1)
+    }
+}
+console.log(factorialRecursion(3))//6
